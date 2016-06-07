@@ -83,4 +83,15 @@ source $ZSH/oh-my-zsh.sh
 alias zshconfig="vim ~/.zshrc"
 
 source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.zshrc.local
+
+# load custom executable functions
+for function in ~/.zsh/functions/*; do
+  source $function
+done
+
+# aliases
+[[ -f ~/.aliases ]] && source ~/.aliases
+
+# Local config
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
