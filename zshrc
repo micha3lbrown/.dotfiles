@@ -72,7 +72,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+export SSH_KEY_PATH="~/.ssh/id_rsa"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -82,6 +82,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
 
+<<<<<<< 4111a1f2be6d726e0b22dfb3174986c026ca9880
 source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # load custom executable functions
@@ -95,3 +96,17 @@ done
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
+=======
+# Antigen
+source ~/.zsh/antigen.zsh
+
+# Antigen Plugins
+antigen bundle command-not-found
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# Antigen Done
+antigen apply
+
+# source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zshrc.local
+>>>>>>> Adding antigen as resource.
