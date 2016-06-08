@@ -1,5 +1,4 @@
 [init]
-  templatedir = ~/.git_template
 [push]
   default = current
 [color]
@@ -13,7 +12,7 @@
   pf = push --force-with-lease
   st = status
 [core]
-  excludesfile = ~/.gitignore
+	excludesfile = /Users/fido/.gitignore_global
   autocrlf = input
 [merge]
   ff = only
