@@ -12,7 +12,7 @@
   pf = push --force-with-lease
   st = status
 [core]
-	excludesfile = /Users/fido/.gitignore_global
+	excludesfile = /Users/mbrown/.gitignore_global
   autocrlf = input
 [merge]
   ff = only
