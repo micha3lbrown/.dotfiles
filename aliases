@@ -11,9 +11,12 @@ alias b="bundle"
 # Rails
 alias migrate="rake db:migrate db:rollback && rake db:migrate db:test:prepare"
 alias s="rspec"
+alias be="bundle exec"
 
 # Docker
 alias dm="docker-machine"
+alias dc="docker-compose"
+alias de="docker exec"
 
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
