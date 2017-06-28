@@ -1,0 +1,43 @@
+{
+	"auto_indent": true,
+	"cheet_codez": true,
+	"color_scheme": "Packages/Boxy Theme/schemes/Boxy Ocean.tmTheme",
+	"detect_indentation": true,
+	"draw_white_space": "tabs",
+	"ensure_newline_at_eof_on_save": true,
+	"folder_exclude_patterns":
+	[
+		".svn",
+		".git",
+		".hg",
+		"CVS",
+		"tmp",
+		".tmp",
+		"node_modules",
+		"coverage",
+		".vagrant"
+	],
+	"font_face": "Menlo",
+	"font_size": 12.0,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"indent_subsequent_lines": true,
+	"indent_to_bracket": true,
+	"rulers":
+	[
+		80,
+		100
+	],
+	"scroll_past_end": true,
+	"smart_indent": true,
+	"tab_size": 2,
+	"theme": "Default.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+	"use_tab_stops": true,
+	"word_separators": "./\\()\"'-:,.;<>~@#$%^&*|+=[]{}`~",
+	"word_wrap": false
+}
+

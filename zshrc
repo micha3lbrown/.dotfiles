@@ -81,6 +81,10 @@ for function in ~/.zsh/functions/*; do
   source $function
 done
 
+# load Go Lang
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
+
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
