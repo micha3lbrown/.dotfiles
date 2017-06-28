@@ -5,8 +5,14 @@ alias mkdir="mkdir -p"
 alias e="$EDITOR"
 alias v="$VISUAL"
 
+# GitHub
+alias gsc="git commit -S -m"
+alias gcu="git-crypt unlock"
+alias gcl="git-crypt lock"
+
 # Bundler
 alias b="bundle"
+alias be="bundle exec"
 
 # Rails
 alias migrate="rake db:migrate db:rollback && rake db:migrate db:test:prepare"
@@ -17,6 +23,15 @@ alias be="bundle exec"
 alias dm="docker-machine"
 alias dc="docker-compose"
 alias de="docker exec"
+
+# Ansible
+alias ap="ansible-playbook"
+
+# Hashicorp
+alias v="vagrant"
+
+# Heroku
+alias h="heroku"
 
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
