@@ -18,6 +18,7 @@
   ff = only
 [commit]
   template = ~/.gitmessage
+	gpgSign = true
 [fetch]
   prune = true
 [rebase]
