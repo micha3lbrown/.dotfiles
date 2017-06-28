@@ -12,7 +12,7 @@
   pf = push --force-with-lease
   st = status
 [core]
-	excludesfile = /Users/mbrown/.gitignore_global
+	excludesfile = /Users/mbrown/.gitignore
   autocrlf = input
 [merge]
   ff = only
@@ -24,3 +24,5 @@
   autosquash = true
 [include]
   path = ~/.gitconfig.local
+[user]
+	signingkey = 6D7FB5B10D19FF07

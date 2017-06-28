@@ -1,0 +1,13 @@
+deploylock () {
+    local lockreason="$*";
+    if [ -z "$reason" ]; then
+        lockreason="$RATIONALE";
+    fi;
+    if [ -z "$lockreason" ]; then
+        echo -n "Reason deploy is locked: ";
+        read lockreason;
+    fi;
+    echo "lock deploys, reason: $lockreason";
+    consulkv set deploylock "$lockreason"
+    SLACK_CHANNEL=C024YVAN6 _post_to_slack "$(whoami) has temporarily locked deploys. Reason: $lockreason" # team-dev channel
+}
