@@ -1,3 +1,0 @@
-create-local-test-gateway () {
-      curl http://core.spreedly.dev/v1/gateways.json -u $CORE_DEV_CREDENTIALS -H 'Content-Type: application/json' -d '{ "gateway": { "gateway_type": "test" }}'
-}

@@ -12,9 +12,9 @@
   pf = push --force-with-lease
   st = status
 [core]
-	excludesfile = /Users/mbrown/.gitignore
+  excludesfile = /Users/mbrown/.gitignore
   autocrlf = input
-	editor = /usr/bin/vim
+  editor = /usr/bin/vim
 [merge]
   ff = only
 [commit]
