@@ -2,3 +2,4 @@
 .python-version
 *.sublime-project
 *.sublime-workspace
+sftp-inventory
