@@ -26,5 +26,3 @@
   autosquash = true
 [include]
   path = ~/.gitconfig.local
-[user]
-	signingkey = 6D7FB5B10D19FF07
