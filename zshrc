@@ -78,7 +78,7 @@ antigen apply
 alias zshconfig="vim ~/.zshrc"
 
 # load custom executable functions
-for function in ~/.zsh/functions/*/; do
+for function in ~/.zsh/functions/*; do
   source $function
 done
 
