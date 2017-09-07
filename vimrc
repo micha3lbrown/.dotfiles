@@ -12,8 +12,7 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'ervandew/supertab'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'rust-lang/rust.vim'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
@@ -76,6 +75,8 @@ filetype plugin indent on
 set wildmode=full
 " make tab completion for files/buffers act like bash
 set wildmenu
+" send selection to global clipboard
+set clipboard=unnamedplus
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
@@ -83,18 +84,10 @@ set wildmenu
 augroup vimrcEx
   " Clear all autocmds in the group
   autocmd!
-  autocmd FileType text setlocal textwidth=78
-  " Jump to last cursor position unless it's invalid or in an event handler
-  autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
 
   "for ruby, autoindent with two spaces, always expand tabs
   autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
   autocmd FileType python set sw=4 sts=4 et
-
-  autocmd! BufRead,BufNewFile *.sass setfiletype sass
 
   autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
   autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
@@ -105,20 +98,6 @@ augroup vimrcEx
   autocmd! FileType md setlocal syn=off
   autocmd! FileType modula2 setlocal syn=off
 augroup END
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" COLOR
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set termguicolors
-" let base16colorspace=256
-
-" if filereadable(expand("~/.vimrc_background"))
-"   let base16colorspace=256
-"  source ~/.vimrc_background
-"  map <F5> :source ~/.vimrc_background<CR>
-" else
-"   colorscheme base16-ashes
-" endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
@@ -142,7 +121,7 @@ imap <c-d> <c-R>=strftime("%c")<cr>
 " Can't be bothered to understand ESC vs <c-c> in insert mode
 imap <c-c> <esc>
 " Clear the search buffer when hitting return
-:nnoremap <CR> :nohlsearch<cr>
+nnoremap <CR> :nohlsearch<cr>
 nnoremap <leader><leader> <c-^>
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
@@ -180,133 +159,6 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SWITCH BETWEEN TEST AND PRODUCTION CODE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! OpenTestAlternate()
-  let new_file = AlternateForCurrentFile()
-  exec ':e ' . new_file
-endfunction
-function! AlternateForCurrentFile()
-  let current_file = expand("%")
-  let new_file = current_file
-  let in_spec = match(current_file, '^spec/') != -1
-  let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<services\>') != -1 || match(current_file, '\<helpers\>') != -1
-  if going_to_spec
-    if in_app
-      let new_file = substitute(new_file, '^app/', '', '')
-    end
-    let new_file = substitute(new_file, '\.rb$', '_spec.rb', '')
-    let new_file = 'spec/' . new_file
-  else
-    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
-    let new_file = substitute(new_file, '^spec/', '', '')
-    if in_app
-      let new_file = 'app/' . new_file
-    end
-  endif
-  return new_file
-endfunction
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RUNNING TESTS
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! RunTestFile(...)
-    if a:0
-        let command_suffix = a:1
-    else
-        let command_suffix = ""
-    endif
-
-" Run the tests for the previously-marked file.
-    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\|_test.exs\)$') != -1
-    if in_test_file
-        call SetTestFile()
-    elseif !exists("t:sdb_test_file")
-        return
-    end
-
-    call RunTests(t:sdb_test_file, command_suffix)
-endfunction
-
-function! RunNearestTest()
-    let spec_line_number = line('.')
-    call RunTestFile(spec_line_number)
-endfunction
-
-function! SetTestFile()
-" Set the spec file that tests will be run for.
-    let t:sdb_test_file=@%
-endfunction
-
-function! RunTests(filename, line_number)
-" Write the file and run tests for the given filename
-    :w
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    if a:filename =~ "\.rb$"
-        if a:filename =~ "spec"
-            if filereadable("Gemfile")
-                let command="bundle exec rspec"
-            else
-                let command="rspec"
-            end
-
-            if a:line_number
-                exec ":!" . command . " " . a:filename . ":" . a:line_number
-            else
-                exec ":!" . command . " " . a:filename
-            end
-        else
-            if filereadable("Gemfile")
-                let command="bundle exec ruby"
-            else
-                let command="ruby"
-            end
-
-            if a:line_number
-                let test_name=system("head -n " . a:line_number . " " . a:filename . " | rg '(def test_|test \")' | tail -1 | sed -e 's/.*def //' -e 's/.*test //' -e 's/ do$//' | tr '\"' / | tr \"'\" / | tr ' ' _")
-                exec ":!" . command . " -Itest " . a:filename . " -n " . test_name
-            else
-                exec ":!" . command . " -Itest " . a:filename
-            end
-        end
-    elseif a:filename =~ "\.exs$"
-        let command="mix test"
-
-        if a:line_number
-            exec ":!" . command . " " . a:filename . ":" . a:line_number
-        else
-            exec ":!" . command . " " . a:filename
-        end
-    end
-endfunction
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RAILS STUFFS
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! ShowRoutes()
-" Requires 'scratch' plugin
-  :topleft 100 :split __Routes__
-" Make sure Vim doesn't write __Routes__ as a file
-  :set buftype=nofile
-" Delete everything
-  :normal 1GdG
-" Put routes output in buffer
-  :0r! rake -s routes
-" Size window to number of lines (1 plus rake output length)
-  :exec ":normal " . line("$") . _ "
-" Move cursor to bottom
-  :normal 1GG
-" Delete empty trailing line
-  :normal dd
-endfunction
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CTRLP STUFFS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_user_command = ['rg --files']
@@ -341,21 +193,3 @@ map <C-p> :Files<cr>
 map <C-g> :Find
 map <C-/> :Lines<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" REVEAL
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! SetupReveal()
-    let t:sdb_reveal_file="outline.txt"
-    let t:sdb_reveal_line=0
-endfunction
-
-function! Reveal()
-    :normal 1GdG
-    let t:sdb_reveal_line=t:sdb_reveal_line + 1
-    exec ":read !head -" . t:sdb_reveal_line . " " . t:sdb_reveal_file
-    :normal gg
-    :normal dd
-endfunction
-
