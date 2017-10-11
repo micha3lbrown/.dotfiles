@@ -12,8 +12,9 @@ fi
 source ~/.zplug/init.zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-# zplug "~/.zshrc.local", from:local
-# zplug "~/.aliases", from:local
+zplug "micha3lbrown/.dotfiles"
+# zplug "~/.zshrc_local.zsh", from:local
+# zplug "~/.aliases.zsh", from:local
 
 # zsh plugins
 zplug "rimraf/k"
@@ -49,7 +50,7 @@ done
 # [[ -f ~/.aliases ]] && source ~/.aliases
 
 # Local config
-#[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+# [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
 #AWSume alias to source the AWSume script
 alias awsume=". awsume"
