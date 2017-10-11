@@ -13,8 +13,7 @@ source ~/.zplug/init.zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "micha3lbrown/.dotfiles"
-# zplug "~/.zshrc_local.zsh", from:local
-# zplug "~/.aliases.zsh", from:local
+zplug "~/.zshrc_local.zsh", from:local
 
 # zsh plugins
 zplug "rimraf/k"
@@ -45,12 +44,6 @@ done
 # load Go Lang
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
-
-# aliases
-# [[ -f ~/.aliases ]] && source ~/.aliases
-
-# Local config
-# [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
 #AWSume alias to source the AWSume script
 alias awsume=". awsume"

@@ -1,0 +1,9 @@
+#!/bin/zsh
+REPO_NAME=".dotfiles"
+REPO_PATH="$HOME/$REPO_NAME"
+
+ln -sf $REPO_PATH/zsh/zshrc ~/.zshrc
+ln -sf $REPO_PATH/vim/vimrc ~/.vimrc
+ln -sf $REPO_PATH/git/gitconfig ~/.gitconfig
+ln -sf $REPO_PATH/git/gitignore_global ~/.gitignore_global
+ln -sf $REPO_PATH/git/gitmessage ~/.gitmessage
