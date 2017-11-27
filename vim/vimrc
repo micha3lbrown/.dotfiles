@@ -12,15 +12,19 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'ervandew/supertab'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'moll/vim-node'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-rails'
+Plug 'mxw/vim-jsx'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'mattn/emmet-vim'
+Plug 'digitaltoad/vim-pug'
 
 call plug#end()
 " -- End Plugins -------------------------------------------------------------
@@ -78,6 +82,9 @@ set wildmode=full
 set wildmenu
 " send selection to global clipboard
 set clipboard=unnamedplus
+let NERDTreeDirArrows=0
+let NERDTreeDirArrowExpandable='+'
+let NERDTreeDirArrowCollapsible='~'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS

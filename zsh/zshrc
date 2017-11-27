@@ -17,7 +17,6 @@ zplug "~/.zshrc_local.zsh", from:local
 
 # zsh plugins
 zplug "rimraf/k"
-zplug "djui/alias-tips"
 zplug "junegunn/fzf", use:shell/key-bindings.zsh
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
@@ -29,7 +28,7 @@ zplug "plugins/z", from:oh-my-zsh
 # zplug "plugins/kubectl", from:oh-my-zsh
 
 # theme <3
-zplug "sobolevn/sobole-zsh-theme", as:theme
+zplug denysdovhan/spaceship-zsh-theme, use:spaceship.zsh, from:github, as:theme
 
 if ! zplug check; then
     zplug install
@@ -54,3 +53,5 @@ alias awsume=". awsume"
 
 # Local config
 [[ -f ~/.zshrc_local.zsh ]] && source ~/.zshrc_local.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
