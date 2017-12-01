@@ -1,6 +1,5 @@
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 SSH_KEY_PATH="~/.ssh/id_rsa"
-SOBOLE_THEME_MODE=dark
 
 # Check if zplug is installed
 if [[ ! -d ~/.zplug ]]; then
@@ -11,9 +10,7 @@ fi
 # zplug init!
 source ~/.zplug/init.zsh
 
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-zplug "micha3lbrown/.dotfiles"
-zplug "~/.zshrc_local.zsh", from:local
+zplug "zplug/zplug", hook-build:"zplug --self-manage"
 
 # zsh plugins
 zplug "rimraf/k"
@@ -25,10 +22,11 @@ zplug "zsh-users/zsh-history-substring-search"
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/z", from:oh-my-zsh
-# zplug "plugins/kubectl", from:oh-my-zsh
 
 # theme <3
 zplug denysdovhan/spaceship-zsh-theme, use:spaceship.zsh, from:github, as:theme
+SPACESHIP_PROMPT_SYMBOL=$
+SPACESHIP_PACKAGE_SHOW=false
 
 if ! zplug check; then
     zplug install
@@ -41,17 +39,10 @@ for function in ~/.zsh/functions/*; do
   source $function
 done
 
-# load Go Lang
+# best version. manager. ever.
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
 
-#AWSume alias to source the AWSume script
-alias awsume=". awsume"
-
-# aliases
-[[ -f ~/.aliases.zsh ]] && source ~/.aliases.zsh
-
-# Local config
-[[ -f ~/.zshrc_local.zsh ]] && source ~/.zshrc_local.zsh
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.aliases.zsh ] && source ~/.aliases.zsh
+[ -f ~/.zshrc_local.zsh ] && source ~/.zshrc_local.zsh
