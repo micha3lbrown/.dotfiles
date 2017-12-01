@@ -1,52 +1,56 @@
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 SSH_KEY_PATH="~/.ssh/id_rsa"
-SOBOLE_THEME_MODE=dark
 
 # Check if zplug is installed
-if [[ ! -d ~/.zplug ]]; then
-    git clone https://github.com/zplug/zplug ~/.zplug
-    source ~/.zplug/init.zsh && zplug update --self
+if [[ ! -d ~/.zgen ]]; then
+    git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 fi
 
-# zplug init!
-source ~/.zplug/init.zsh
 
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-zplug "micha3lbrown/.dotfiles"
-zplug "~/.zshrc_local.zsh", from:local
 
-# zsh plugins
-zplug "rimraf/k"
-zplug "junegunn/fzf", use:shell/key-bindings.zsh
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-history-substring-search"
+autoload -Uz compinit
+compinit
 
-# oh-my-zsh plugins
-zplug "plugins/git", from:oh-my-zsh
-zplug "plugins/command-not-found", from:oh-my-zsh
-zplug "plugins/z", from:oh-my-zsh
-# zplug "plugins/kubectl", from:oh-my-zsh
+source "${HOME}/.zgen/zgen.zsh"
 
-# theme <3
-zplug denysdovhan/spaceship-zsh-theme, use:spaceship.zsh, from:github, as:theme
+if ! zgen saved; then
 
-if ! zplug check; then
-    zplug install
+    # zgen oh-my-zsh
+
+    # oh-my-zsh plugins
+    zgen oh-my-zsh plugins/git
+    zgen oh-my-zsh plugins/command-not-found
+    zgen oh-my-zsh plugins/z
+    zgen oh-my-zsh plugins/ssh-agent
+
+    # zsh plugins
+    zgen load rimraf/k
+    zgen load junegunn/fzf
+    zgen load zsh-users/zsh-syntax-highlighting
+    zgen load zsh-users/zsh-history-substring-search
+    zgen load zsh-users/zsh-completions src
+
+    # theme <3
+    zgen load denysdovhan/spaceship-zsh-theme spaceship
+
+    zgen save
 fi
 
-zplug load
+# theme settings
+export SPACESHIP_PROMPT_SYMBOL="$"
+export SPACESHIP_PACKAGE_SHOW=false
+
+# zstyle
+zstyle :omz:plugins:ssh-agent lifetime 4h
 
 # load custom executable functions
 for function in ~/.zsh/functions/*; do
   source $function
 done
 
-# load Go Lang
+# asdf: king version manager
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
-
-#AWSume alias to source the AWSume script
-alias awsume=". awsume"
 
 # aliases
 [[ -f ~/.aliases.zsh ]] && source ~/.aliases.zsh
