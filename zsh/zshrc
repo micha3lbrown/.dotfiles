@@ -22,6 +22,7 @@ zplug "zsh-users/zsh-history-substring-search"
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/z", from:oh-my-zsh
+zplug "plugins/ssh-agent", from:oh-my-zsh
 
 # theme <3
 zplug denysdovhan/spaceship-zsh-theme, use:spaceship.zsh, from:github, as:theme
