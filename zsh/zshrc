@@ -26,14 +26,18 @@ zplug "plugins/ssh-agent", from:oh-my-zsh
 
 # theme <3
 zplug denysdovhan/spaceship-zsh-theme, use:spaceship.zsh, from:github, as:theme
-SPACESHIP_PROMPT_SYMBOL=$
-SPACESHIP_PACKAGE_SHOW=false
 
 if ! zplug check; then
     zplug install
 fi
 
 zplug load
+
+# theme <33
+SPACESHIP_PROMPT_SYMBOL=$
+SPACESHIP_PACKAGE_SHOW=false
+SPACESHIP_KUBECONTEXT_SHOW=false
+SPACESHIP_BATTERY_SHOW=false
 
 # load custom executable functions
 for function in ~/.zsh/functions/*; do
