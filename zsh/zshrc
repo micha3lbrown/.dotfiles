@@ -1,5 +1,4 @@
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-SSH_KEY_PATH="~/.ssh/id_rsa"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # Check if zplug is installed
 if [[ ! -d ~/.zplug ]]; then
@@ -16,7 +15,7 @@ zplug "zplug/zplug", hook-build:"zplug --self-manage"
 zplug "rimraf/k"
 zplug "junegunn/fzf", use:shell/key-bindings.zsh
 zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-history-substring-search"
+# zplug "zsh-users/zsh-history-substring-search"
 
 # oh-my-zsh plugins
 zplug "plugins/git", from:oh-my-zsh
