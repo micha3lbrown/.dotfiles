@@ -23,8 +23,6 @@ Plug 'mxw/vim-jsx'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'mattn/emmet-vim'
-Plug 'digitaltoad/vim-pug'
 
 call plug#end()
 " -- End Plugins -------------------------------------------------------------
@@ -81,7 +79,7 @@ set wildmode=full
 " make tab completion for files/buffers act like bash
 set wildmenu
 " send selection to global clipboard
-set clipboard=unnamedplus
+set clipboard+=unnamed
 let NERDTreeDirArrows=0
 let NERDTreeDirArrowExpandable='+'
 let NERDTreeDirArrowCollapsible='~'

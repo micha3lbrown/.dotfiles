@@ -6,3 +6,4 @@ sftp-inventory
 *.swp
 *~
 *.vagrant/
+*.retry
