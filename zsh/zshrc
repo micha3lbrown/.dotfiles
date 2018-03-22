@@ -1,5 +1,11 @@
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
+# GPG Rules All
+export GPG_KEY_ID="0x9893F5557D7A9E22"
+export GPG_SIGNING_KEY="0xD2090053C3686438"
+export GPG_ENCRYPTION_KEY="0x83F5D16858E1FA5A"
+export GPG_AUTHENTICATION_KEY="0xBF8701D1DEA3536B"
+
 # Check if zplug is installed
 if [[ ! -d ~/.zplug ]]; then
     git clone https://github.com/zplug/zplug ~/.zplug
