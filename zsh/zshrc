@@ -7,7 +7,8 @@ export GPG_ENCRYPTION_KEY="0x83F5D16858E1FA5A"
 export GPG_AUTHENTICATION_KEY="0xBF8701D1DEA3536B"
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
+gpg-connect-agent updatestartuptty /bye
+# gpgconf --launch gpg-agent
 
 # Check if zplug is installed
 if [[ ! -d ~/.zplug ]]; then
@@ -44,6 +45,7 @@ SPACESHIP_PROMPT_SYMBOL=$
 SPACESHIP_PACKAGE_SHOW=false
 SPACESHIP_KUBECONTEXT_SHOW=false
 SPACESHIP_BATTERY_SHOW=false
+SPACESHIP_PYENV_SHOW=false
 
 # load custom executable functions
 for function in ~/.zsh/functions/*; do
@@ -57,3 +59,6 @@ done
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.aliases.zsh ] && source ~/.aliases.zsh
 [ -f ~/.zshrc_local.zsh ] && source ~/.zshrc_local.zsh
+
+#AWSume alias to source the AWSume script
+alias awsume=". ~/.pyenv/versions/2.7.10/bin/awsume"

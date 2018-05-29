@@ -36,6 +36,9 @@ alias h="heroku"
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
 
+# Dash
+alias dash='open dash://'
+
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
 
