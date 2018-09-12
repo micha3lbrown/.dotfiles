@@ -70,3 +70,7 @@ done
 
 #AWSume alias to source the AWSume script
 alias awsume=". ~/.pyenv/versions/2.7.10/bin/awsume"
+
+#AWSume alias to source the AWSume script
+alias awsume=". \$(pyenv which awsume)"
+fpath=(/usr/local/share/zsh/site-functions $fpath)

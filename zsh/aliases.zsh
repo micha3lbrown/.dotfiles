@@ -39,6 +39,9 @@ alias path='echo $PATH | tr -s ":" "\n"'
 # Dash
 alias dash='open dash://'
 
+# Networking
+alias whatsmyip='curl ipv4.icanhazip.com'
+
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
 

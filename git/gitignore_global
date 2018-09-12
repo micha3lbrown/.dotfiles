@@ -7,4 +7,3 @@ sftp-inventory
 *~
 *.vagrant/
 *.retry
-.tool-versions
