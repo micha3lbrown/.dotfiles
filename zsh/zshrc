@@ -25,6 +25,8 @@ if [[ ! -d ~/.zplug ]]; then
 fi
 
 # zplug init!
+export ZPLUG_USE_CACHE=true
+
 source ~/.zplug/init.zsh
 
 zplug "zplug/zplug", hook-build:"zplug --self-manage"
@@ -33,11 +35,15 @@ zplug "zplug/zplug", hook-build:"zplug --self-manage"
 zplug "rimraf/k"
 zplug "junegunn/fzf", use:shell/key-bindings.zsh
 zplug "zsh-users/zsh-syntax-highlighting"
+zplug "andrewferrier/fzf-z", from:gh-r, at:2db04c704360b5b303fb5708686cbfd198c6bf4f
 
 # oh-my-zsh plugins
 zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/nomad", from:oh-my-zsh
+zplug "plugins/docker", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/z", from:oh-my-zsh
+
 
 # theme <3
 zplug denysdovhan/spaceship-zsh-theme, use:spaceship.zsh, from:github, as:theme
@@ -49,11 +55,17 @@ fi
 zplug load
 
 # theme <33
-SPACESHIP_PROMPT_SYMBOL=$
+SPACESHIP_CHAR_SYMBOL="$ "
 SPACESHIP_PACKAGE_SHOW=false
 SPACESHIP_KUBECONTEXT_SHOW=false
 SPACESHIP_BATTERY_SHOW=false
 SPACESHIP_PYENV_SHOW=false
+SPACESHIP_TIME_SHOW=true
+
+# SPACESHIP_GIT_BRANCH_PREFIX=false
+SPACESHIP_RUBY_SHOW=false
+SPACESHIP_PYTHON_SHOW=false
+SPACESHIP_VENV_SHOW=false
 
 # load custom executable functions
 for function in ~/.zsh/functions/*; do
@@ -68,9 +80,9 @@ done
 [ -f ~/.aliases.zsh ] && source ~/.aliases.zsh
 [ -f ~/.zshrc_local.zsh ] && source ~/.zshrc_local.zsh
 
-#AWSume alias to source the AWSume script
-alias awsume=". ~/.pyenv/versions/2.7.10/bin/awsume"
+fpath=(/usr/local/share/zsh/site-functions $fpath)
+
+eval "$(fasd --init auto)"
 
 #AWSume alias to source the AWSume script
 alias awsume=". \$(pyenv which awsume)"
-fpath=(/usr/local/share/zsh/site-functions $fpath)
