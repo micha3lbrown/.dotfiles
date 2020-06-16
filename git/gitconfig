@@ -28,3 +28,4 @@
   path = ~/.gitconfig.local
 [user]
 	signingkey = 0xD2090053C3686438
+	name = micha3lbrown

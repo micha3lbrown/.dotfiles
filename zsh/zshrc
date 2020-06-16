@@ -84,5 +84,6 @@ fpath=(/usr/local/share/zsh/site-functions $fpath)
 
 eval "$(fasd --init auto)"
 
-#AWSume alias to source the AWSume script
-alias awsume=". \$(pyenv which awsume)"
+# alias awsume=". awsume"
+alias awsume=". $(asdf which awsume)"
+

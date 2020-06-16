@@ -29,7 +29,6 @@ alias ap="ansible-playbook"
 
 # Hashicorp
 alias v="vagrant"
-alias tf="terraform"
 
 # Heroku
 alias h="heroku"
