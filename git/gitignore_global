@@ -7,3 +7,5 @@ sftp-inventory
 *~
 *.vagrant/
 *.retry
+.vscode/*
+.tool-versions

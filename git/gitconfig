@@ -9,10 +9,11 @@
   branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
   ci = commit -v
   co = checkout
+  ff = merge --ff-only
   pf = push --force-with-lease
   st = status
 [core]
-  excludesfile = /Users/mbrown/.gitignore
+  excludesfile = ~/.gitignore_global
   autocrlf = input
   editor = /usr/bin/vim
 [merge]
@@ -27,5 +28,6 @@
 [include]
   path = ~/.gitconfig.local
 [user]
-	signingkey = 0xD2090053C3686438
-	name = micha3lbrown
+	signingkey = 0x3F02D82B487AD431
+	name = Michael Brown
+	email = michael.brown@creditkarma.com

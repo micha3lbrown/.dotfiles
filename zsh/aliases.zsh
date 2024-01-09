@@ -42,6 +42,10 @@ alias dash='open dash://'
 # Networking
 alias whatsmyip='curl ipv4.icanhazip.com'
 
+# Date
+alias date-utc='TZ=UTC date'
+alias date-pst='TZ=UTC date'
+
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
 
