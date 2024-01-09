@@ -6,7 +6,7 @@ setopt    appendhistory
 setopt    sharehistory
 setopt    incappendhistory
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin"
 
 # GPG Rules All
 export GPG_KEY_ID="0x9893F5557D7A9E22"
@@ -15,9 +15,10 @@ export GPG_ENCRYPTION_KEY="0x7EFF341C16063BB7"
 export GPG_AUTHENTICATION_KEY="0x11F2EC9D9CE22D9A"
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpg-connect-agent updatestartuptty /bye
-# gpgconf --launch gpg-agent
 
+gpgconf --launch gpg-agent
+# gpg-connect-agent reloadagent /bye
+#
 # Check if zplug is installed
 if [[ ! -d ~/.zplug ]]; then
     git clone https://github.com/zplug/zplug ~/.zplug
@@ -73,7 +74,10 @@ for function in ~/.zsh/functions/*.zsh; do
 done
 
 # best version. manager. ever.
-. $HOME/.asdf/asdf.sh
+# . $HOME/.asdf/asdf.sh
+
+# ASDF (M1 Mac)
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.aliases.zsh ] && source ~/.aliases.zsh
@@ -81,5 +85,4 @@ done
 
 fpath=(/usr/local/share/zsh/site-functions $fpath)
 
-eval "$(fasd --init auto)"
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh) # add autocomplete permanently to your zsh shell
